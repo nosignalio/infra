@@ -5,8 +5,8 @@ terraform {
 data "terraform_remote_state" "state" {
     backend = "s3"
     config {
-        bucket  = "opshell"
-        key     = "terraform.tfstate"
+        bucket      = "opshell"
+        key         = "terraform.tfstate"
         access_key  = "${var.DO_SPACES_KEY}"
         secret_key  = "${var.DO_SECRET_KEY}"
         endpoint    = "https://fra1.digitaloceanspaces.com"

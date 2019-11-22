@@ -4,12 +4,20 @@ base_image: &base_image
   hashicorp/terraform:0.12.4
 
 jobs:
+  context: 
   init:
     docker:
       - image: *base_image
     steps:
       - checkout
-      - run: terraform init
+      - run: |
+          terraform init \
+          -backend-config "bucket=opshell" \
+          -backend-config "key=terraform.tfstate" \
+          -backend-config "endpoint=https://fra1.digitaloceanspaces.com" \
+          -backend-config "region=eu-central-1"
+          -backend-config "access_key=$TF_VAR_DO_SPACES_KEY" \
+          -backend-config "secret_key=$TF_VAR_DO_SECRET_KEY"
 
 workflows:
   version: 2.1
