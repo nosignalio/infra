@@ -1,5 +1,10 @@
 terraform {
-    backend "s3" {
+    backend "s3" {}
+}
+
+data "terraform_remote_state" "state" {
+    backend = "s3"
+    config {
         bucket  = "opshell"
         key     = "terraform.tfstate"
         access_key  = "${var.DO_SPACES_KEY}"
