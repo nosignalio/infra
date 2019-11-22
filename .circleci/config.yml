@@ -4,7 +4,6 @@ base_image: &base_image
   hashicorp/terraform:0.12.4
 
 jobs:
-  context: digitalocean
   init:
     docker:
       - image: *base_image
@@ -23,4 +22,5 @@ workflows:
   version: 2.1
   infrastructure_deployment:
     jobs:
-      - init
+      - init:
+          context: digitalocean
