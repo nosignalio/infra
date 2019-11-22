@@ -8,10 +8,8 @@ jobs:
     docker:
       - image: *base_image
     steps:
-      - run:
-          name: terraform init
-          command: |
-            terraform init
+      - checkout
+      - run: terraform apply
 
 workflows:
   version: 2.1
