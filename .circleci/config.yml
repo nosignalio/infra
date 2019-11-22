@@ -9,7 +9,7 @@ jobs:
       - image: *base_image
     steps:
       - checkout
-      - run: terraform apply
+      - run: terraform init
 
 workflows:
   version: 2.1
