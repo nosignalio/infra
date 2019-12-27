@@ -9,27 +9,14 @@ jobs:
       - image: *base_image
     steps:
       - checkout
-      - run: terraform init
-  plan:
-    docker:
-      - image: *base_image
-    steps:
-      - checkout
-      - run: terraform plan
-  apply:
-    docker:
-      - image: *base_image
-    steps:
-      - checkout
-      - run: terraform apply
+      - run:
+        - terraform init
+        - terraform plan
+        - terraform apply
 
 workflows:
   version: 2.1
   infrastructure_deployment:
     jobs:
       - init:
-          context: digitalocean
-      - plan:
-          context: digitalocean
-      - apply:
           context: digitalocean
