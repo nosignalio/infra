@@ -17,7 +17,7 @@ jobs:
           command: terraform plan
       - run:
           name: apply
-          command: terraform apply
+          command: terraform apply -auto-approve
 
 workflows:
   version: 2.1
