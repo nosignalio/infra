@@ -10,12 +10,12 @@ resource "digitalocean_droplet" "cnc" {
   private_networking  = true
 }
 
-resource "digitalocean_domain" "opshell" {
+data "digitalocean_domain" "opshell" {
   name      = "opshell.io"
 }
 
 resource "digitalocean_record" "cnc" {
-  domain    = digitalocean_domain.opshell.name
+  domain    = data.digitalocean_domain.opshell.name
   type      = "A"
   name      = "cnc"
   value     = digitalocean_droplet.cnc.ipv4_address
