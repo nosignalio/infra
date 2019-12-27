@@ -1,8 +1,4 @@
-variable "do_token" {}
-
-provider "digitalocean" {
-  token = "${var.do_token}"
-}
+provider "digitalocean" {}
 
 resource "digitalocean_droplet" "cnc" {
   image     = "ubuntu-18-04-x64"
@@ -12,7 +8,6 @@ resource "digitalocean_droplet" "cnc" {
 
   ssh_keys            = ["26123638"]
   private_networking  = true
-  tags                = ["shell", "ubuntu", "18.04"]
 }
 
 resource "digitalocean_domain" "opshell" {
