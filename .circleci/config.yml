@@ -4,24 +4,24 @@ base_image: &base_image
   hashicorp/terraform:0.12.4
 
 jobs:
-  init:
+  terraform:
     docker:
       - image: *base_image
     steps:
       - checkout
       - run:
           name: init
-          command: terraform init
+          command: cd terraform && terraform init
       - run:
           name: plan
-          command: terraform plan
+          command: cd terraform && terraform plan
       - run:
           name: apply
-          command: terraform apply -auto-approve
+          command: cd terraform && terraform apply -auto-approve
 
 workflows:
   version: 2.1
   infrastructure_deployment:
     jobs:
-      - init:
+      - terraform:
           context: digitalocean
