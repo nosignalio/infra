@@ -10,9 +10,14 @@ jobs:
     steps:
       - checkout
       - run:
-        - terraform init
-        - terraform plan
-        - terraform apply
+          name: init
+          command: terraform init
+      - run:
+          name: plan
+          command: terraform plan
+      - run:
+          name: apply
+          command: terraform apply
 
 workflows:
   version: 2.1
