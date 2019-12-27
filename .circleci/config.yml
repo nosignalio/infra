@@ -14,10 +14,10 @@ jobs:
           command: terraform init
       - run:
           name: plan
-          command: terraform plan
+          command: terraform plan -var="do_token=${DIGITIALOCEAN_TOKEN}"
       - run:
           name: apply
-          command: terraform apply
+          command: terraform apply -var="do_token=${DIGITIALOCEAN_TOKEN}"
 
 workflows:
   version: 2.1

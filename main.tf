@@ -1,4 +1,8 @@
-provider "digitalocean" {}
+variable "do_token" {}
+
+provider "digitalocean" {
+  token = "${var.do_token}"
+}
 
 resource "digitalocean_droplet" "cnc" {
   image     = "ubuntu-18-04-x64"
