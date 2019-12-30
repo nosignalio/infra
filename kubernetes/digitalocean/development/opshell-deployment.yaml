@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: opshell
+  namespace: development
+  labels:
+    app: opshell
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: opshell
+  template:
+    metadata:
+      labels:
+        app: opshell
+    spec:
+      containers:
+        - name: opshell
+          image: opshell/opshell:latest
+          ports:
+            - containerPort: 80
+              name: http
