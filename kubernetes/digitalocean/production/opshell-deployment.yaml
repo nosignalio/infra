@@ -2,11 +2,11 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: opshell
-  namespace: development
+  namespace: production
   labels:
     app: opshell
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: opshell
