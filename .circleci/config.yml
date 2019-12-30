@@ -33,29 +33,29 @@ jobs:
       - run:
           name: Deploy changes to development
           command: ./bin/digitalocean/deployment.sh development
-    test:
-      docker:
-        - image: circleci/buildpack-deps:stretch
-      steps:
-        - run:
-            name: Test applications
-            command: |
-              ./test/opshell/runner.sh
-    production:
-      docker:
-        - image: circleci/buildpack-deps:stretch
-      steps:
-        - run:
-            name: Install kubectl for production deploy
-            command: |
-              curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
-              sudo touch /etc/apt/sources.list.d/kubernetes.list
-              echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
-              sudo apt-get update
-              sudo apt-get install -y kubectl
-        - run:
-            name: Deploy changes to production
-            command: ./bin/digitalocean/deployment.sh production
+  test:
+    docker:
+      - image: circleci/buildpack-deps:stretch
+    steps:
+      - run:
+          name: Test applications
+          command: |
+            ./test/opshell/runner.sh
+  production:
+    docker:
+      - image: circleci/buildpack-deps:stretch
+    steps:
+      - run:
+          name: Install kubectl for production deploy
+          command: |
+            curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+            sudo touch /etc/apt/sources.list.d/kubernetes.list
+            echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
+            sudo apt-get update
+            sudo apt-get install -y kubectl
+      - run:
+          name: Deploy changes to production
+          command: ./bin/digitalocean/deployment.sh production
 workflows:
   version: 2.1
   deployment:
