@@ -22,7 +22,8 @@ jobs:
     docker:
       - image: circleci/buildpack-deps:stretch
     steps:
-      - run: Install apt-transport-https
+      - run:
+        name: Install apt-transport-https
         command: |
           sudo apt-get install apt-transport-https
       - run:
@@ -48,7 +49,8 @@ jobs:
     docker:
       - image: circleci/buildpack-deps:stretch
     steps:
-      - run: Install apt-transport-https
+      - run:
+        name: Install apt-transport-https
         command: |
           sudo apt-get install apt-transport-https
       - run:
