@@ -1,12 +1,29 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: opshell
+  namespace: development
+  labels:
+    app: opshell
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: http
+      name: http
+  selector:
+    app: opshell
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: opshell
-  namespace: production
+  namespace: development
   labels:
     app: opshell
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: opshell
