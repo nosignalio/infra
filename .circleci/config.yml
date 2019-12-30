@@ -23,7 +23,8 @@ jobs:
       - image: circleci/buildpack-deps:stretch
     steps:
       - run: Install apt-transport-https
-        command: sudo apt-get install apt-transport-https
+        command: |
+          sudo apt-get install apt-transport-https
       - run:
           name: Install kubectl for development deploy
           command: |
@@ -48,7 +49,8 @@ jobs:
       - image: circleci/buildpack-deps:stretch
     steps:
       - run: Install apt-transport-https
-        command: sudo apt-get install apt-transport-https
+        command: |
+          sudo apt-get install apt-transport-https
       - run:
           name: Install kubectl for production deploy
           command: |
@@ -70,3 +72,17 @@ workflows:
           filters:
             branches:
               only: master
+          requires:
+            - infra
+      - test:
+          filters:
+            branches:
+              only: master
+          requires:
+            - development
+      - production:
+          filters:
+            branches:
+              only: master
+          requires:
+            - test
