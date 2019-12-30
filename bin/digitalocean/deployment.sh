@@ -11,7 +11,7 @@ if [ "$#" -ne 1 ]; then
 fi
 
 # environments to an array
-envs=(common $env)
+envs=($env)
 
 echo "$KUBERNETES_CLUSTER_CERTIFICATE" | base64 --decode > cert.crt
 for e in ${envs[@]}; do

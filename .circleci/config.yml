@@ -73,6 +73,9 @@ workflows:
     jobs:
       - infra:
           context: digitalocean
+          filters:
+            branches:
+              only: master
       - development:
           filters:
             branches:
