@@ -24,9 +24,9 @@ jobs:
     steps:
       - checkout
       - run:
-        name: Install apt-transport-https
-        command: |
-          sudo apt-get install apt-transport-https
+          name: Install apt-transport-https
+          command: |
+            sudo apt-get install apt-transport-https
       - run:
           name: Install kubectl for development deploy
           command: |
@@ -53,9 +53,9 @@ jobs:
     steps:
       - checkout
       - run:
-        name: Install apt-transport-https
-        command: |
-          sudo apt-get install apt-transport-https
+          name: Install apt-transport-https
+          command: |
+            sudo apt-get install apt-transport-https
       - run:
           name: Install kubectl for production deploy
           command: |
