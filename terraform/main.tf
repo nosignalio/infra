@@ -35,3 +35,5 @@ resource "digitalocean_kubernetes_cluster" "opshell" {
     node_count  = "3"
   }
 }
+
+# k8s dns record management
