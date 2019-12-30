@@ -4,24 +4,65 @@ base_image: &base_image
   hashicorp/terraform:0.12.4
 
 jobs:
-  terraform:
+  infra:
     docker:
       - image: *base_image
     steps:
       - checkout
       - run:
-          name: init
+          name: Initialize Terraform
           command: cd terraform && terraform init
       - run:
-          name: plan
+          name: Plan Terraform
           command: cd terraform && terraform plan
       - run:
-          name: apply
+          name: Apply Terraform
           command: cd terraform && terraform apply -auto-approve
-
+  development:
+    docker:
+      - image: circleci/buildpack-deps:stretch
+    steps:
+      - run:
+          name: Install kubectl for development deploy
+          command: |
+            curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+            sudo touch /etc/apt/sources.list.d/kubernetes.list
+            echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
+            sudo apt-get update
+            sudo apt-get install -y kubectl
+      - run:
+          name: Deploy changes to development
+          command: ./bin/digitalocean/deployment.sh development
+    test:
+      docker:
+        - image: circleci/buildpack-deps:stretch
+      steps:
+        - run:
+            name: Test applications
+            command: |
+              ./test/opshell/runner.sh
+    production:
+      docker:
+        - image: circleci/buildpack-deps:stretch
+      steps:
+        - run:
+            name: Install kubectl for production deploy
+            command: |
+              curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+              sudo touch /etc/apt/sources.list.d/kubernetes.list
+              echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
+              sudo apt-get update
+              sudo apt-get install -y kubectl
+        - run:
+            name: Deploy changes to production
+            command: ./bin/digitalocean/deployment.sh production
 workflows:
   version: 2.1
-  infrastructure_deployment:
+  deployment:
     jobs:
-      - terraform:
+      - infra:
           context: digitalocean
+      - development:
+          filters:
+            branches:
+              only: master
