@@ -38,3 +38,16 @@ spec:
           ports:
             - containerPort: 80
               name: http
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: opshell-ingress
+spec:
+  rules:
+  - host: dev.opshell.io
+    http:
+      paths:
+      - backend:
+          serviceName: opshell
+          servicePort: 80
