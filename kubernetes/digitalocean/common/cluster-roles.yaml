@@ -7,3 +7,4 @@ rules:
   - apiGroups: ["", "apps", "batch", "extensions"]
     resources: ["deployments", "services", "replicasets", "pods", "jobs", "cronjobs", "secrets", "ingresses"]
     verbs: ["*"]
+  - apiGroups:
