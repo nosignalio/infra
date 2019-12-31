@@ -12,7 +12,4 @@ rules:
     verbs: ["*"]
   - apiGroups: ["cert-manager.io"]
     resources: ["issuers", "issuers/status"]
-    verbs: ["update"]
-  - apiGroups: ["cert-manager.io"]
-    resources: ["issuers"]
-    verbs: ["get", "list", "watch"]
+    verbs: ["*"]
