@@ -5,6 +5,8 @@ metadata:
   name: cicd
 rules:
   - apiGroups: ["", "apps", "batch", "extensions"]
-    resources: ["deployments", "services", "replicasets", "pods", "jobs", "cronjobs", "secrets", "ingresses"]
+    resources: ["deployments", "services", "replicasets", "pods", "jobs", "cronjobs", "secrets"]
     verbs: ["*"]
-  - apiGroups:
+  - apiGroups: ["networking.k8s.io"]
+    resources: ["ingresses", "ingresses/status"]
+    verbs: ["*"]
