@@ -43,6 +43,7 @@ spec:
   tls:
   - hosts:
     - opshell.io
+    - www.opshell.io
     secretName: opshell-tls
   rules:
   - host: opshell.io
@@ -51,3 +52,9 @@ spec:
       - backend:
           serviceName: opshell
           servicePort: 80
+  - host: www.opshell.io
+    http:
+      paths:
+      - backend:
+        serviceName: opshell
+        servicePort: 80
