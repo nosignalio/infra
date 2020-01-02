@@ -56,5 +56,5 @@ spec:
     http:
       paths:
       - backend:
-        serviceName: opshell
-        servicePort: 80
+          serviceName: opshell
+          servicePort: 80
