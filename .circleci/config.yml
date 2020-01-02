@@ -18,7 +18,7 @@ jobs:
       - run:
           name: Apply Terraform
           command: cd terraform && terraform apply -auto-approve
-  development:
+  default:
     docker:
       - image: circleci/buildpack-deps:stretch
     steps:
@@ -28,7 +28,7 @@ jobs:
           command: |
             sudo apt-get install apt-transport-https
       - run:
-          name: Install kubectl for development deploy
+          name: Install kubectl for deployment
           command: |
             curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
             sudo touch /etc/apt/sources.list.d/kubernetes.list
@@ -36,8 +36,8 @@ jobs:
             sudo apt-get update
             sudo apt-get install -y kubectl
       - run:
-          name: Deploy changes to development
-          command: ./bin/digitalocean/deployment.sh development
+          name: Deploy changes to the default namespace
+          command: ./bin/digitalocean/deployment.sh default
   test:
     docker:
       - image: circleci/buildpack-deps:stretch
@@ -47,26 +47,6 @@ jobs:
           name: Test applications
           command: |
             ./test/opshell/runner.sh
-  production:
-    docker:
-      - image: circleci/buildpack-deps:stretch
-    steps:
-      - checkout
-      - run:
-          name: Install apt-transport-https
-          command: |
-            sudo apt-get install apt-transport-https
-      - run:
-          name: Install kubectl for production deploy
-          command: |
-            curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
-            sudo touch /etc/apt/sources.list.d/kubernetes.list
-            echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
-            sudo apt-get update
-            sudo apt-get install -y kubectl
-      - run:
-          name: Deploy changes to production
-          command: ./bin/digitalocean/deployment.sh production
 workflows:
   version: 2.1
   deployment:
@@ -76,7 +56,7 @@ workflows:
           filters:
             branches:
               only: master
-      - development:
+      - default:
           filters:
             branches:
               only: master
@@ -87,10 +67,4 @@ workflows:
             branches:
               only: master
           requires:
-            - development
-      - production:
-          filters:
-            branches:
-              only: master
-          requires:
-            - test
+            - default
