@@ -56,15 +56,15 @@ workflows:
           filters:
             branches:
               only: master
-      - default:
-          filters:
-            branches:
-              only: master
-          requires:
-            - infra
-      - test:
-          filters:
-            branches:
-              only: master
-          requires:
-            - default
+      # - default:
+      #     filters:
+      #       branches:
+      #         only: master
+      #     requires:
+      #       - infra
+      # - test:
+      #     filters:
+      #       branches:
+      #         only: master
+      #     requires:
+      #       - default

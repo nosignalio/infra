@@ -23,17 +23,17 @@ resource "digitalocean_record" "cnc" {
   ttl       = "300"
 }
 
-# kubernetes cluster
-resource "digitalocean_kubernetes_cluster" "opshell" {
-  name      = "opshell"
-  region    = "lon1"
-  version   = "1.16.2-do.1"
-
-  node_pool {
-    name        = "worker-pool"
-    size        = "s-2vcpu-4gb"
-    node_count  = "3"
-  }
-}
+# kubernetes cluster (taking it down!)
+# resource "digitalocean_kubernetes_cluster" "opshell" {
+#   name      = "opshell"
+#   region    = "lon1"
+#   version   = "1.16.2-do.1"
+#
+#   node_pool {
+#     name        = "worker-pool"
+#     size        = "s-2vcpu-4gb"
+#     node_count  = "3"
+#   }
+# }
 
 # k8s dns record management
