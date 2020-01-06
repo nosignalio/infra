@@ -1,0 +1,7 @@
+---
+- hosts: london
+  remote_user: ps
+  become: yes
+  become_method: sudo
+  roles:
+    - common

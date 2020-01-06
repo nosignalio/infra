@@ -1,0 +1,26 @@
+---
+
+- name: configure ssh
+  copy:
+    src: etc/ssh/sshd_config
+    dest: /etc/ssh/sshd_config
+    mode: 0644
+    backup: 'yes'
+
+- name: update apt-cache
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: upgrade all packages
+  apt:
+    name: '*'
+    state: latest
+
+- name: remove unneeded dependencies
+  apt:
+    autoremove: yes
+
+- name: remove useless packages from cache
+  apt:
+    autoclean: yes
