@@ -4,36 +4,37 @@ data "digitalocean_domain" "opshell" {
   name      = "opshell.io"
 }
 
-# primary shell server
-resource "digitalocean_droplet" "cnc" {
-  image     = "ubuntu-18-04-x64"
-  name      = "cnc.opshell.io"
-  region    = "lon1"
-  size      = "s-2vcpu-4gb"
-
-  ssh_keys            = ["26123638"]
-  private_networking  = true
+data "digitalocean_domain" "nosignal" {
+  name      = "nosignal.io"
 }
 
-resource "digitalocean_record" "cnc" {
-  domain    = data.digitalocean_domain.opshell.name
+# primary shell server
+resource "digitalocean_droplet" "shell" {
+  image     = "ubuntu-18-04-x64"
+  name      = "shell.nosignal.io"
+  region    = "lon1"
+  size      = "s-1vcpu-2gb"
+
+  ssh_ keys = ["26123638"]
+}
+
+resource "digitalocean_record" "shell" {
+  domain    = data.digitalocean_domain.nosignal.name
   type      = "A"
-  name      = "cnc"
-  value     = digitalocean_droplet.cnc.ipv4_address
+  name      = "shell"
+  value     = digitalocean_droplet.shell.ipv4_address
   ttl       = "300"
 }
 
-# kubernetes cluster (taking it down!)
-# resource "digitalocean_kubernetes_cluster" "opshell" {
-#   name      = "opshell"
-#   region    = "lon1"
-#   version   = "1.16.2-do.1"
-#
-#   node_pool {
-#     name        = "worker-pool"
-#     size        = "s-2vcpu-4gb"
-#     node_count  = "3"
-#   }
-# }
+# kubernetes cluster
+resource "digitalocean_kubernetes_cluster" "nosignal" {
+  name      = "nosignal-labs"
+  region    = "lon1"
+  version   = "1.16.2-do.1"
 
-# k8s dns record management
+  node_pool {
+    name        = "worker-pool"
+    size        = "s-1vcpu-2gb"
+    node_count  = "3"
+  }
+}
