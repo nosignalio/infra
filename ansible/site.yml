@@ -1,5 +1,5 @@
 ---
-- hosts: london
+- hosts: fleet
   remote_user: ps
   become: yes
   become_method: sudo

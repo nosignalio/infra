@@ -4,3 +4,29 @@
   apt:
     name: nmap
     state: present
+
+- name: add kubectl apt-key
+  apt_key:
+    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+    state: present
+
+- name: add kubectl repo
+  apt_repository:
+    repo: deb https://apt.kubernetes.io/ kubernetes-xenial main
+    state: present
+
+- name: update apt-cache
+  apt:
+    update_cache: yes
+
+- name: install kubectl
+  apt:
+    name: kubectl
+    state: present
+
+- name: install doctl
+  snap:
+    name: doctl
+
+- name: connect doctl and kubectl
+  command: snap connect doctl:kube-config

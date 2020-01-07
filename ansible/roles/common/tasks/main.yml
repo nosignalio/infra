@@ -19,6 +19,11 @@
     name: '*'
     state: latest
 
+- name: install apt-transport-https
+  apt:
+    name: apt-transport-https
+    state: present
+
 - name: remove unneeded dependencies
   apt:
     autoremove: yes

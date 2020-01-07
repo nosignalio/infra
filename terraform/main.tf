@@ -26,6 +26,24 @@ resource "digitalocean_record" "shell" {
   ttl       = "300"
 }
 
+# satellite (remote) server
+resource "digitalocean_droplet" "satellite" {
+  image     = "ubuntu-18-04-x64"
+  name      = "satellite.nosignal.io"
+  region    = "fra1"
+  size      = "s-1vcpu-1gb"
+
+  ssh_keys  = ["26123638"]
+}
+
+resource "digitalocean_record" "satellite" {
+  domain    = data.digitalocean_domain.nosignal.name
+  type      = "A"
+  name      = "satellite"
+  value     = digitalocean_droplet.satellite.ipv4_address
+  ttl       = "300"
+}
+
 # kubernetes cluster
 resource "digitalocean_kubernetes_cluster" "nosignal-labs" {
   name      = "nosignal-labs"
