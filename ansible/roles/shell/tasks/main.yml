@@ -30,3 +30,9 @@
 
 - name: connect doctl and kubectl
   command: snap connect doctl:kube-config
+
+- name: clone infra repo
+  git:
+    repo: git@github.com:nosignalio/infra.git
+    dest: /home/ps/code/infra
+    accept_hostkey: yes
