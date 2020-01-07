@@ -15,7 +15,7 @@ resource "digitalocean_droplet" "shell" {
   region    = "lon1"
   size      = "s-1vcpu-2gb"
 
-  ssh_ keys = ["26123638"]
+  ssh_keys  = ["26123638"]
 }
 
 resource "digitalocean_record" "shell" {
@@ -27,7 +27,7 @@ resource "digitalocean_record" "shell" {
 }
 
 # kubernetes cluster
-resource "digitalocean_kubernetes_cluster" "nosignal" {
+resource "digitalocean_kubernetes_cluster" "nosignal-labs" {
   name      = "nosignal-labs"
   region    = "lon1"
   version   = "1.16.2-do.1"
