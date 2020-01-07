@@ -6,6 +6,8 @@
     dest: /etc/ssh/sshd_config
     mode: 0644
     backup: 'yes'
+  notify:
+    - restart openssh
 
 - name: update apt-cache
   apt:

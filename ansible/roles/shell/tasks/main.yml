@@ -1,0 +1,6 @@
+---
+# install and configure software for use on shell servers
+- name: install nmap
+  apt:
+    name: nmap
+    state: present
