@@ -26,7 +26,7 @@ resource "digitalocean_record" "shell" {
   ttl       = "300"
 }
 
-# satellite (remote) server
+# satellites (remote) servers
 resource "digitalocean_droplet" "satellite" {
   image     = "ubuntu-18-04-x64"
   name      = "satellite.nosignal.io"
@@ -42,6 +42,15 @@ resource "digitalocean_record" "satellite" {
   name      = "satellite"
   value     = digitalocean_droplet.satellite.ipv4_address
   ttl       = "300"
+}
+
+resource "digitalocean_droplet" "satellite-ams" {
+  image     = "ubuntu-18-04-x64"
+  name      = "satellite-ams.nosignal.io"
+  region    = "ams3"
+  size      = "s-1vpcu-1gb"
+
+  ssh_keys  = ["26123638"]
 }
 
 # kubernetes cluster
