@@ -48,9 +48,17 @@ resource "digitalocean_droplet" "satellite-ams" {
   image     = "ubuntu-18-04-x64"
   name      = "satellite-ams.nosignal.io"
   region    = "ams3"
-  size      = "s-1vpcu-1gb"
+  size      = "s-1vcpu-1gb"
 
   ssh_keys  = ["26123638"]
+}
+
+resource "digitalocean_record" "satellite-ams" {
+  domain    = data.digitalocean_domain.nosignal.name
+  type      = "A"
+  name      = "satellite-ams"
+  value     = digitalocean_droplet.satellite.ipv4_address
+  ttl       = "300"
 }
 
 # kubernetes cluster
