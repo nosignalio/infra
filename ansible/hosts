@@ -1,6 +1,7 @@
 [fleet:children]
 london
 frankfurt
+amsterdam
 
 [london]
 shell.nosignal.io
@@ -8,8 +9,12 @@ shell.nosignal.io
 [frankfurt]
 satellite.nosignal.io
 
+[amsterdam]
+satellite-ams.nosignal.io
+
 [shell]
 shell.nosignal.io
 
 [satellites]
 satellite.nosignal.io
+satellite-ams.nosignal.io
