@@ -10,3 +10,6 @@ satellite.nosignal.io
 
 [shell]
 shell.nosignal.io
+
+[satellites]
+satellite.nosignal.io

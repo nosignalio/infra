@@ -15,14 +15,11 @@
     repo: deb https://apt.kubernetes.io/ kubernetes-xenial main
     state: present
 
-- name: update apt-cache
-  apt:
-    update_cache: yes
-
 - name: install kubectl
   apt:
     name: kubectl
     state: present
+    update_cache: yes
 
 - name: install doctl
   snap:
