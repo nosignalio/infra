@@ -57,7 +57,7 @@ resource "digitalocean_record" "satellite-ams" {
   domain    = data.digitalocean_domain.nosignal.name
   type      = "A"
   name      = "satellite-ams"
-  value     = digitalocean_droplet.satellite.ipv4_address
+  value     = digitalocean_droplet.satellite-ams.ipv4_address
   ttl       = "300"
 }
 
