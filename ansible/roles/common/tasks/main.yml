@@ -9,6 +9,20 @@
   notify:
     - restart openssh
 
+- name: manage authorized keys
+  copy:
+    src: home/ssh/authorized_keys
+    dest: /home/ps/.ssh/authorized_keys
+    mode: 0600
+    backup: 'yes'
+
+- name: manage ssh config
+  copy:
+    src: home/ssh/config
+    dest: /home/ps/.ssh/config
+    mode: 0600
+    backup: 'yes'
+
 - name: update apt-cache
   apt:
     update_cache: yes
