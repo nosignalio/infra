@@ -27,7 +27,7 @@ resource "digitalocean_record" "shell" {
 }
 
 # satellites (remote) servers
-resource "digitalocean_droplet" "satellite" {
+resource "digitalocean_droplet" "satellite-fra" {
   image     = "ubuntu-18-04-x64"
   name      = "satellite.nosignal.io"
   region    = "fra1"
@@ -36,10 +36,10 @@ resource "digitalocean_droplet" "satellite" {
   ssh_keys  = ["26123638"]
 }
 
-resource "digitalocean_record" "satellite" {
+resource "digitalocean_record" "satellite-fra" {
   domain    = data.digitalocean_domain.nosignal.name
   type      = "A"
-  name      = "satellite"
+  name      = "satellite-fra"
   value     = digitalocean_droplet.satellite.ipv4_address
   ttl       = "300"
 }
