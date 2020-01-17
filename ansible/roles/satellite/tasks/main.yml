@@ -16,6 +16,9 @@
     state: present
     update_cache: yes
 
+- name: add user to docker group
+  command: usermod -a -G docker ps
+
 - name: add go repository
   apt_repository:
     repo: ppa:longsleep/golang-backports
