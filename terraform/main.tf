@@ -29,7 +29,7 @@ resource "digitalocean_record" "shell" {
 # satellites (remote) servers
 resource "digitalocean_droplet" "satellite-fra" {
   image     = "ubuntu-18-04-x64"
-  name      = "satellite.nosignal.io"
+  name      = "satellite-fra.nosignal.io"
   region    = "fra1"
   size      = "s-1vcpu-1gb"
 
@@ -40,7 +40,7 @@ resource "digitalocean_record" "satellite-fra" {
   domain    = data.digitalocean_domain.nosignal.name
   type      = "A"
   name      = "satellite-fra"
-  value     = digitalocean_droplet.satellite.ipv4_address
+  value     = digitalocean_droplet.satellite-fra.ipv4_address
   ttl       = "300"
 }
 
