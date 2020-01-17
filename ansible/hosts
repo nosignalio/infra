@@ -7,7 +7,7 @@ amsterdam
 shell.nosignal.io
 
 [frankfurt]
-satellite.nosignal.io
+satellite-fra.nosignal.io
 
 [amsterdam]
 satellite-ams.nosignal.io
@@ -16,5 +16,5 @@ satellite-ams.nosignal.io
 shell.nosignal.io
 
 [satellites]
-satellite.nosignal.io
+satellite-fra.nosignal.io
 satellite-ams.nosignal.io
