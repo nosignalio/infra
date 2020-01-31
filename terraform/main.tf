@@ -15,7 +15,7 @@ resource "digitalocean_droplet" "shell" {
   region    = "lon1"
   size      = "s-1vcpu-2gb"
 
-  ssh_keys  = ["26123638"]
+  ssh_keys  = ["26123638","26424553"]
 }
 
 resource "digitalocean_record" "shell" {
@@ -33,7 +33,7 @@ resource "digitalocean_droplet" "satellite-fra" {
   region    = "fra1"
   size      = "s-1vcpu-1gb"
 
-  ssh_keys  = ["26123638"]
+  ssh_keys  = ["26123638","26424553"]
 }
 
 resource "digitalocean_record" "satellite-fra" {
@@ -50,7 +50,7 @@ resource "digitalocean_droplet" "satellite-ams" {
   region    = "ams3"
   size      = "s-1vcpu-1gb"
 
-  ssh_keys  = ["26123638"]
+  ssh_keys  = ["26123638","26424553"]
 }
 
 resource "digitalocean_record" "satellite-ams" {
