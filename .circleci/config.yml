@@ -56,15 +56,15 @@ workflows:
           filters:
             branches:
               only: master
-      # - kubernetes:
-      #     filters:
-      #       branches:
-      #         only: master
-      #     requires:
-      #       - infra
-      # - test:
-      #     filters:
-      #       branches:
-      #         only: master
-      #     requires:
-      #       - default
+      - kubernetes:
+          filters:
+            branches:
+              only: master
+          requires:
+            - infra
+      - test:
+          filters:
+            branches:
+              only: master
+          requires:
+            - default
