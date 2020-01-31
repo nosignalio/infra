@@ -67,4 +67,4 @@ workflows:
             branches:
               only: master
           requires:
-            - default
+            - kubernetes
