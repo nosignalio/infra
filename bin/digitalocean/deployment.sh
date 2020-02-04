@@ -10,12 +10,6 @@ if [ "$#" -ne 1 ]; then
     exit 1
 fi
 
-# infrastructure and platform deployments and changes
-infra=(common ingress cert-manager)
-for i in ${infra[@]}; do
-  kubectl --kubeconfig=/dev/null --server=$KUBERNETES_SERVER --certificate-authority-cert.crt --token=$KUBERNETES_TOKEN apply -f kubernetes/digitalocean/${i}/
-done
-
 # environments to an array
 envs=($env)
 
