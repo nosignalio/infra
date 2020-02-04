@@ -30,7 +30,7 @@ resource "digitalocean_record" "shell" {
 resource "digitalocean_kubernetes_cluster" "nosignal-labs" {
   name      = "nosignal-labs"
   region    = "lon1"
-  version   = "1.16.2-do.1"
+  version   = "1.16.2-do.3"
 
   node_pool {
     name        = "worker-pool"
