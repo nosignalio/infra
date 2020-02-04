@@ -26,41 +26,6 @@ resource "digitalocean_record" "shell" {
   ttl       = "300"
 }
 
-# satellites (remote) servers
-resource "digitalocean_droplet" "satellite-fra" {
-  image     = "ubuntu-18-04-x64"
-  name      = "satellite-fra.nosignal.io"
-  region    = "fra1"
-  size      = "s-1vcpu-1gb"
-
-  ssh_keys  = ["26123638","26424553"]
-}
-
-resource "digitalocean_record" "satellite-fra" {
-  domain    = data.digitalocean_domain.nosignal.name
-  type      = "A"
-  name      = "satellite-fra"
-  value     = digitalocean_droplet.satellite-fra.ipv4_address
-  ttl       = "300"
-}
-
-resource "digitalocean_droplet" "satellite-ams" {
-  image     = "ubuntu-18-04-x64"
-  name      = "satellite-ams.nosignal.io"
-  region    = "ams3"
-  size      = "s-1vcpu-1gb"
-
-  ssh_keys  = ["26123638","26424553"]
-}
-
-resource "digitalocean_record" "satellite-ams" {
-  domain    = data.digitalocean_domain.nosignal.name
-  type      = "A"
-  name      = "satellite-ams"
-  value     = digitalocean_droplet.satellite-ams.ipv4_address
-  ttl       = "300"
-}
-
 # kubernetes cluster
 resource "digitalocean_kubernetes_cluster" "nosignal-labs" {
   name      = "nosignal-labs"
@@ -69,7 +34,7 @@ resource "digitalocean_kubernetes_cluster" "nosignal-labs" {
 
   node_pool {
     name        = "worker-pool"
-    size        = "s-1vcpu-2gb"
+    size        = "s-2vcpu-4gb"
     node_count  = "3"
   }
 }
