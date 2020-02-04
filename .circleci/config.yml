@@ -36,7 +36,7 @@ jobs:
             sudo apt-get update
             sudo apt-get install -y kubectl
       - run:
-          name: Deploy changes to the default namespace
+          name: Deploy kubernetes configuration
           command: ./bin/digitalocean/deployment.sh default
   test:
     docker:
