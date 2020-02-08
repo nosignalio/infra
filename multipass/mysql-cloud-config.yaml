@@ -1,0 +1,8 @@
+---
+# cloud-config
+# sets up a localised instance of mysql for development purposes
+package_update: true
+package_upgrade: true
+
+packages:
+  - mysql-server

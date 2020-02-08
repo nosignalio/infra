@@ -1,0 +1,25 @@
+---
+# cloud-config
+# sets up a developer spec ubuntu lts release on ubuntu's multipass virtualization
+# platform.
+package_update: true
+package_upgrade: true
+
+apt:
+  sources:
+    kubernetes.list:
+      source: "deb https://apt.kubernetes.io/ kubernetes-xenial main"
+      keyid: BA07F4FB
+
+  package_update: true
+
+packages:
+  - kubectl
+  - nmap
+  - mysql-client
+
+runcmd:
+  - mkdir -p /home/ubuntu/.config/doctl
+  - snap install doctl
+  - snap connect doctl:kube-config
+  - chown -R ubuntu:ubuntu /home/ubuntu/.config
