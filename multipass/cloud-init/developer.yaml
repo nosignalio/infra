@@ -10,10 +10,13 @@ apt:
     kubernetes.list:
       source: "deb https://apt.kubernetes.io/ kubernetes-xenial main"
       keyid: BA07F4FB
+    longsleep.list:
+      source: "ppa:longsleep/golang-backports"
 
-  package_update: true
+package_update: true
 
 packages:
+  - golang-go
   - kubectl
   - nmap
   - mysql-client
