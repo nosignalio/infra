@@ -1,3 +1,6 @@
+// Base Route53 records for nosignal.io.
+// Application records will be maintained within the config file for each
+// service and not in this file.
 resource "aws_route53_zone" "nosignal" {
   name = "nosignal.io"
 }
