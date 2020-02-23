@@ -37,10 +37,7 @@ resource "aws_route53_record" "root_txt" {
   ttl     = 300
   records = [
     "protonmail-verification=b747cfff58af0cc2ca9ef9f24f2757afa86213b7",
-    "v=spf1",
-    "include:_spf.protonmail.ch",
-    "mx",
-    "~all",
+    "v=spf1 include:_spf.protonmail.ch mx ~all",
   ]
 }
 
